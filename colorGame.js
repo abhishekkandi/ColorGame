@@ -8,8 +8,7 @@ var colorDisplay = document.getElementById("colorDisplay");
 var messageDisplay = document.querySelector("#message");
 var h1 = document.querySelector("h1");
 var resetButton = document.getElementById("reset");
-var easyBtn = document.getElementById("easyBtn");
-var hardBtn = document.getElementById("hardBtn");
+var modeButtons = document.querySelectorAll(".mode");
 
 colorDisplay.textContent = pickedColor;
 
@@ -30,6 +29,20 @@ for(var i =0 ; i < squares.length;  i++){
             this.style.backgroundColor = defaultBackgroundColor;
             messageDisplay.textContent = "Try Again!";
         }
+    })
+}
+
+resetButton.addEventListener("click",function(){
+    resetCommonVariables();
+})
+
+for(var i =0; i < modeButtons.length; i++){
+    modeButtons[i].addEventListener("click",function(){
+        modeButtons[0].classList.remove("selected");
+        modeButtons[1].classList.remove("selected");
+        this.classList.add("selected");
+        numberOfSquares = this.textContent === "Easy" ? 3 : 6;
+        resetCommonVariables();
     })
 }
 
@@ -66,38 +79,16 @@ function resetCommonVariables() {
     h1.style.backgroundColor = "steelblue";
     messageDisplay.textContent = "";
     resetButton.textContent = "New Colors";
-}
-
-resetButton.addEventListener("click",function(){
-    resetCommonVariables();
-    for(var i = 0; i < squares.length; i++){
-        squares[i].style.backgroundColor = colors[i];
-    }
-})
-
-easyBtn.addEventListener("click",function(){
-    this.classList.add("selected");
-    hardBtn.classList.remove("selected");
-    numberOfSquares = 3;
-    resetCommonVariables();
     for(var i =0; i < squares.length; i++){
         if(colors[i]){
+            squares[i].style.display = "block";
             squares[i].style.backgroundColor = colors[i];
         }
         else{
             squares[i].style.display = "none";
         }
     }
-})
+}
 
-hardBtn.addEventListener("click",function(){
-    this.classList.add("selected");
-    easyBtn.classList.remove("selected");
-    numberOfSquares = 6;
-    resetCommonVariables();
-    for(var i =0; i < squares.length; i++){
-        squares[i].style.backgroundColor = colors[i];
-        squares[i].style.display = "block";
-    }
-})
+
 

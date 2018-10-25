@@ -63,7 +63,7 @@ function resetCommonVariables() {
     colors = loadRandomColors(numberOfSquares);
     pickedColor = pickRandomColor();
     colorDisplay.textContent = pickedColor;
-    h1.style.backgroundColor = defaultBackgroundColor;
+    h1.style.backgroundColor = "steelblue";
     messageDisplay.textContent = "";
     resetButton.textContent = "New Colors";
 }
